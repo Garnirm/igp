@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Honey\Resources;
+namespace App\Honey\Admin\Resources;
 
-use App\Honey\Resources\FederalStateResource\Routes\FederalStateIndex;
+use App\Honey\Admin\Resources\FederalStateResource\Routes\FederalStateIndex;
 use Honey\Resource\ResourceRoute;
 
 class FederalStateResource

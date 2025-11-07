@@ -8,10 +8,30 @@
         <meta name="domain" content="{{ config('app.url') }}">
         <meta name="robots" content="noindex, nofollow">
 
-        <title>{{ config('app.name') }}</title>
+        <title>{{ $title ?? config('app.name') }}</title>
+
+        @vite([ 'resources/sass/app.scss', 'resources/js/app.js' ])
+
+        @livewireStyles
     </head>
 
-    <body>
+    <body class="h-screen bg-gray-100">
+        <div class="flex h-full">
+            @include('honey-layout::sidebar')
+
+            <div class="flex-1 flex flex-col h-full overflow-y-auto">
+                @include('honey-layout::topbar')
+
+                @include('honey-layout::page', [
+                    'title' => $title, 
+                    'breadcrumb' => $breadcrumb,
+                    'widgets' => $widgets,
+                ])
+            </div>
+        </div>
+        
+        {{-- Scripts Livewire --}}
+        @livewireScripts
     </body>
 </html>
 <!-- End supervision -->
