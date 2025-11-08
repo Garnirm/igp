@@ -29,8 +29,7 @@
                 ])
             </div>
         </div>
-        
-        {{-- Scripts Livewire --}}
+
         @livewireScripts
     </body>
 </html>

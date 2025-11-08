@@ -15,13 +15,11 @@
         </nav>
     @endif
 
-    <h1 class="text-3xl font-bold text-gray-900">
-        {{ $title }}
-    </h1>
+    @include('honey-layout::page.title', [ 'title' => $title ])
+</div>
 
-    <div class="px-4 md:px-6">
-        @foreach ($widgets as $widget)
-            <livewire:is :component="$widget" />
-        @endforeach
-    </div>
+<div class="px-4 md:px-6">
+    @foreach ($widgets as $widget_id => $widget)
+        <livewire:is :component="$widget->widget_namespace" :identifier="$widget_id" />
+    @endforeach
 </div>

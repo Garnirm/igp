@@ -3,6 +3,7 @@
 namespace Honey\Render;
 
 use Honey\Render\BreadcrumbItem;
+use Honey\Widgets\WidgetRegistry;
 use Illuminate\View\View;
 
 class RenderResource
@@ -15,9 +16,9 @@ class RenderResource
     private array $breadcrumb = [];
 
     /**
-     * @var array
+     * @var array<string,WidgetRegistry>
      */
-    private array $widgets = [];
+    public static array $widgets = [];
 
     public function title(string $title): static
     {
@@ -36,9 +37,16 @@ class RenderResource
         return $this;
     }
 
+    /**
+     * @param array<WidgetRegistry> $widgets
+     */
     public function widgets(array $widgets = []): static
     {
-        $this->widgets = $widgets;
+        foreach ($widgets as $widget) {
+            $identifier = $widget->identifier ?? uniqid();
+
+            self::$widgets[ $identifier ] = $widget;
+        }
 
         return $this;
     }
@@ -46,7 +54,7 @@ class RenderResource
     public function view(): View
     {
         return view('honey-layout::base', [
-            'widgets' => $this->widgets,
+            'widgets' => self::$widgets,
             'title' => $this->title,
             'breadcrumb' => $this->breadcrumb,
         ]);
