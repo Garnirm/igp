@@ -2,6 +2,8 @@
 
 namespace Honey\Widgets;
 
+use Honey\Render\RenderResource;
+
 abstract class WidgetRegistry
 {
     public string $identifier = '';
@@ -13,8 +15,15 @@ abstract class WidgetRegistry
         return $this;
     }
 
+    public function register(): static
+    {
+        RenderResource::$widgets[ $this->identifier ] = $this;
+
+        return $this;
+    }
+
     public static function make(): static
     {
-        return app(static::class);
+        return app(static::class)->identifier(uniqid())->register();
     }
 }

@@ -10,23 +10,26 @@ class RenderResource
     private CompositionHeader $composition_header;
 
     /**
-     * @var array<string,WidgetRegistry>
+     * @var array<string,WidgetRegistry> $widgets
      */
     public static array $widgets = [];
+
+    /**
+     * @var array<string,WidgetRegistry>
+     */
+    public static array $primary_content_widgets = [];
 
     public function __construct()
     {
         $this->composition_header = new CompositionHeader();
     }
 
-    public function header(): static
+    /**
+     * @param array<mixed> $items
+     */
+    public function header(array $items = []): static
     {
-        return $this;
-    }
-
-    public function title(string $title): static
-    {
-        $this->composition_header->title = $title;
+        $this->composition_header->items($items);
 
         return $this;
     }
@@ -37,9 +40,7 @@ class RenderResource
     public function widgets(array $widgets = []): static
     {
         foreach ($widgets as $widget) {
-            $identifier = $widget->identifier ?? uniqid();
-
-            self::$widgets[ $identifier ] = $widget;
+            self::$primary_content_widgets[ $widget->identifier ] = $widget;
         }
 
         return $this;
@@ -48,9 +49,8 @@ class RenderResource
     public function view(): View
     {
         return view('honey-layout::base', [
-            'widgets' => self::$widgets,
-            'title' => $this->composition_header->title,
-            'breadcrumb' => [],// $this->breadcrumb,
+            'widgets' => self::$primary_content_widgets,
+            'header' => $this->composition_header,
         ]);
     }
 }

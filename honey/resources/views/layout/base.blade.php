@@ -23,8 +23,7 @@
                 @include('honey-layout::topbar')
 
                 @include('honey-layout::page', [
-                    'title' => $title, 
-                    'breadcrumb' => $breadcrumb,
+                    'header' => $header,
                     'widgets' => $widgets,
                 ])
             </div>

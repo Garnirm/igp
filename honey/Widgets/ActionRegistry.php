@@ -4,10 +4,8 @@ namespace Honey\Widgets;
 
 class ActionRegistry extends WidgetRegistry
 {
-    private string $label = '';
-    private string $view = 'honey-widgets::action';
-
-    public string $widget_namespace = Table::class;
+    public string $label = '';
+    public string $widget_namespace = Action::class;
 
     public function label(string $label): static
     {

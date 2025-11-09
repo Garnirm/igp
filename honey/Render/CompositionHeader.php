@@ -4,9 +4,18 @@ namespace Honey\Render;
 
 class CompositionHeader
 {
-    public string $title = '';
+    /**
+     * @var array<mixed> $items
+     */
+    public array $items = [];
 
-    public function __construct()
+    /**
+     * @param array<mixed> $items
+     */
+    public function items(array $items = []): static
     {
+        $this->items = $items;
+
+        return $this;
     }
 }
