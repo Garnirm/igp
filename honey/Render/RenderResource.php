@@ -2,37 +2,31 @@
 
 namespace Honey\Render;
 
-use Honey\Render\BreadcrumbItem;
 use Honey\Widgets\WidgetRegistry;
 use Illuminate\View\View;
 
 class RenderResource
 {
-    private string $title = '';
-
-    /**
-     * @var array<BreadcrumbItem>
-     */
-    private array $breadcrumb = [];
+    private CompositionHeader $composition_header;
 
     /**
      * @var array<string,WidgetRegistry>
      */
     public static array $widgets = [];
 
-    public function title(string $title): static
+    public function __construct()
     {
-        $this->title = $title;
+        $this->composition_header = new CompositionHeader();
+    }
 
+    public function header(): static
+    {
         return $this;
     }
 
-    /**
-     * @param array<BreadcrumbItem> $breadcrumb
-     */
-    public function breadcrumb(array $breadcrumb = []): static
+    public function title(string $title): static
     {
-        $this->breadcrumb = $breadcrumb;
+        $this->composition_header->title = $title;
 
         return $this;
     }
@@ -55,8 +49,8 @@ class RenderResource
     {
         return view('honey-layout::base', [
             'widgets' => self::$widgets,
-            'title' => $this->title,
-            'breadcrumb' => $this->breadcrumb,
+            'title' => $this->composition_header->title,
+            'breadcrumb' => [],// $this->breadcrumb,
         ]);
     }
 }
