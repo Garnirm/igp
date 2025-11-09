@@ -2,6 +2,7 @@
 
 namespace Honey\Panel\Traits;
 
+use Honey\Panel\PanelRoutesRegistry;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -26,9 +27,11 @@ trait RegisterRoutes
             foreach ($routes as $route) {
                 $full_route = Str::rtrim('/'.$this->path.'/'.$path_resource.$route->path, '/');
 
-                Route::get($full_route, [ $route->page, 'execute' ])
+                $route = Route::get($full_route, [ $route->page, 'execute' ])
                     ->middleware('web')
                     ->name('honey.'.(!empty($this->id) ? $this->id.'.' : '').'resources.'.$resource::$id.'.'.$route->name);
+
+                PanelRoutesRegistry::addRoute($route, $this);
             }
         }
 
@@ -45,12 +48,13 @@ trait RegisterRoutes
             }
 
             $page_path = Str::start($page::$url, '/');
-
             $full_route = Str::rtrim('/'.$this->path.$page_path, '/');
 
-            Route::get($full_route, [ $page, 'handle' ])
+            $route = Route::get($full_route, [ $page, 'handle' ])
                 ->middleware('web')
                 ->name('honey.'.(!empty($this->id) ? $this->id.'.' : '').'pages.'.$page_id);
+
+            PanelRoutesRegistry::addRoute($route, $this);
         }
 
         return $this;

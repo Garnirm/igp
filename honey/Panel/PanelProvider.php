@@ -6,18 +6,11 @@ use Illuminate\Support\ServiceProvider;
 
 abstract class PanelProvider extends ServiceProvider
 {
-    /**
-     * @return array<Panel>
-     */
-    abstract protected function load(): array;
+    abstract protected function load(): Panel;
 
     public function boot(): void
     {
-        $panels = $this->load();
-
-        foreach ($panels as $panel) {
-            $panel->registerResourcesRoutes()->registerPagesRoute();
-        }
+        $this->load()->registerResourcesRoutes()->registerPagesRoute();
     }
 
     public function register(): void

@@ -2,6 +2,7 @@
 
 namespace Honey\Resource;
 
+use Honey\Panel\PanelRoutesRegistry;
 use Honey\Render\RenderResource;
 use Illuminate\View\View;
 
@@ -11,7 +12,9 @@ abstract class ResourcePage
 
     public function execute(): View
     {
-        $render = new RenderResource();
+        $panel = PanelRoutesRegistry::getPanel(request()->getPathInfo());
+
+        $render = new RenderResource(panel: $panel);
 
         return $this
             ->handle(render: $render)

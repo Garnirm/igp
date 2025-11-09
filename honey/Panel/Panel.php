@@ -8,10 +8,10 @@ class Panel
 {
     use RegisterRoutes;
 
-    private string $id = '';
+    private string $id;
     private string $path = '';
 
-    private bool $has_topbar = true;
+    public bool $has_topbar = true;
 
     /**
      * @var array<class-string> $pages
@@ -25,7 +25,7 @@ class Panel
 
     public static function make(): static
     {
-        return app(static::class);
+        return app(static::class)->id(uniqid());
     }
 
     public function id(string $id): static
@@ -52,7 +52,7 @@ class Panel
     /**
      * @param array<class-string> $pages
      */
-    public function addPages(array $pages): static
+    public function pages(array $pages): static
     {
         $this->pages = $pages;
 
@@ -62,7 +62,7 @@ class Panel
     /**
      * @param array<class-string> $resources
      */
-    public function addResources(array $resources): static
+    public function resources(array $resources): static
     {
         $this->resources = array_merge($this->resources, $resources);
 

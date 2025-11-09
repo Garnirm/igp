@@ -2,12 +2,14 @@
 
 namespace Honey\Render;
 
+use Honey\Panel\Panel;
 use Honey\Widgets\WidgetRegistry;
 use Illuminate\View\View;
 
 class RenderResource
 {
     private CompositionHeader $composition_header;
+    private Panel $panel;
 
     /**
      * @var array<string,WidgetRegistry> $widgets
@@ -19,9 +21,10 @@ class RenderResource
      */
     public static array $primary_content_widgets = [];
 
-    public function __construct()
+    public function __construct(Panel $panel)
     {
         $this->composition_header = new CompositionHeader();
+        $this->panel = $panel;
     }
 
     /**
@@ -49,8 +52,10 @@ class RenderResource
     public function view(): View
     {
         return view('honey-layout::base', [
-            'widgets' => self::$primary_content_widgets,
             'header' => $this->composition_header,
+            'panel' => $this->panel,
+
+            'widgets' => self::$primary_content_widgets,
         ]);
     }
 }

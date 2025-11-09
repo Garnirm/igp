@@ -9,22 +9,17 @@ use Honey\Panel\PanelProvider;
 
 class AdminPanelProvider extends PanelProvider
 {
-    /**
-     * @return array<Panel>
-     */
-    protected function load(): array
+    protected function load(): Panel
     {
-        return [
-            Panel::make()
-                ->id(id: 'admin')
-                ->path(path: 'admin')
-                ->topBar(true)
-                ->addResources([
-                    FederalStateResource::class,
-                ])
-                ->addPages([
-                    Dashboard::class,
-                ]),
-        ];
+        return Panel::make()
+            ->id(id: 'admin')
+            ->path(path: 'admin')
+            ->topBar(false)
+            ->resources([
+                FederalStateResource::class,
+            ])
+            ->pages([
+                Dashboard::class,
+            ]);
     }
 }

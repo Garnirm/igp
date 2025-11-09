@@ -20,7 +20,9 @@
             @include('honey-layout::sidebar')
 
             <div class="flex-1 flex flex-col h-full overflow-y-auto">
-                @include('honey-layout::topbar')
+                @if ($panel->has_topbar)
+                    @include('honey-layout::topbar')
+                @endif
 
                 @include('honey-layout::page', [
                     'header' => $header,
