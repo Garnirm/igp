@@ -7,8 +7,8 @@ use Illuminate\View\View;
 
 class ActionModale extends Widget
 {
-    private string $label;
-    private ?string $model = null;
+    public string $label;
+    public ?string $model = null;
 
     /**
      * @var array<mixed> $widgets
@@ -35,7 +35,7 @@ class ActionModale extends Widget
     public function render(): View
     {
         return view('honey-widgets::action-modale', [
-            'label' => $this->label,
+            'widgets' => $this->widgets,
         ]);
     }
 }
