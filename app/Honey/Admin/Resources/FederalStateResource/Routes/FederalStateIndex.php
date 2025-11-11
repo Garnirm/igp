@@ -3,13 +3,15 @@
 namespace App\Honey\Admin\Resources\FederalStateResource\Routes;
 
 use App\Honey\Admin\Resources\FederalStateResource;
+use App\Models\FederalState;
+use Honey\Form\Form;
 use Honey\Render\BreadcrumbItem;
 use Honey\Render\HeaderBlock;
 use Honey\Render\HeaderBreadcrumb;
 use Honey\Render\HeaderTitle;
 use Honey\Render\RenderResource;
 use Honey\Resource\ResourcePage;
-use Honey\Widgets\ActionRegistry;
+use Honey\Widgets\ActionModaleRegistry;
 use Honey\Widgets\Table\TextColumn;
 use Honey\Widgets\TableRegistry;
 
@@ -28,7 +30,11 @@ class FederalStateIndex extends ResourcePage
                 HeaderBlock::make()->items([
                     HeaderTitle::make()->label('Liste des états fédéraux'),
 
-                    ActionRegistry::make()->label('Créer un état'),
+                    ActionModaleRegistry::make()->label('Créer un état')
+                        ->model(FederalState::class)
+                        ->widgets([
+                            Form::make()->items([]),
+                        ]),
                 ])->columns(2),
             ])
             ->widgets([
