@@ -2,6 +2,8 @@
 
 namespace Honey\Form;
 
+use Illuminate\Support\Collection;
+
 class Form
 {
     /**
@@ -9,12 +11,12 @@ class Form
      */
     private array $items = [];
 
-    public string $view_path = 'honey-layout::form.container';
+    public string $view_path = 'honey-form::container';
 
     public function toArray(): array
     {
         return [
-            'items' => $this->items,
+            'items' => (new Collection($this->items))->map(fn ($item) => $item->toArray()),
             'view_path' => $this->view_path,
         ];
     }

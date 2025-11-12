@@ -7,8 +7,7 @@
             
             <div class="relative bg-white rounded-lg shadow-xl mx-auto p-6" style="max-width: 500px; margin-top: 10vh;">
                 @foreach ($widgets as $widget)
-                    <?php echo $widget['view_path']; ?>
-                    @include($widget['view_path'])
+                    @include($widget['view_path'], [ 'items' => $widget['items'] ])
                 @endforeach
             </div>
         </div>

@@ -5,6 +5,7 @@ namespace App\Honey\Admin\Resources\FederalStateResource\Routes;
 use App\Honey\Admin\Resources\FederalStateResource;
 use App\Models\FederalState;
 use Honey\Form\Form;
+use Honey\Form\TextInput;
 use Honey\Render\BreadcrumbItem;
 use Honey\Render\HeaderBlock;
 use Honey\Render\HeaderBreadcrumb;
@@ -14,6 +15,7 @@ use Honey\Resource\ResourcePage;
 use Honey\Widgets\ActionModaleRegistry;
 use Honey\Widgets\Table\TextColumn;
 use Honey\Widgets\TableRegistry;
+use Illuminate\Support\Facades\Auth;
 
 class FederalStateIndex extends ResourcePage
 {
@@ -33,7 +35,9 @@ class FederalStateIndex extends ResourcePage
                     ActionModaleRegistry::make()->label('Créer un état')
                         ->model(FederalState::class)
                         ->widgets([
-                            Form::make()->items([]),
+                            Form::make()->items([
+                                TextInput::make()->label(fn () => Auth::check() ? 'Nom' : 'None'),
+                            ]),
                         ]),
                 ])->columns(2),
             ])
