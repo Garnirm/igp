@@ -20,6 +20,11 @@ class FederalStateResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static ?string $navigationLabel = 'Etats fédéraux';
+    protected static ?string $modelLabel = 'Etat fédéral';
+    protected static ?string $pluralModelLabel = 'Etats fédéraux';
+    protected static bool $hasTitleCaseModelLabel = false;
+
     public static function form(Schema $schema): Schema
     {
         return FederalStateForm::configure($schema);

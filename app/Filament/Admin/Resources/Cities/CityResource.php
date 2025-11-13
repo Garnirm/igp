@@ -20,6 +20,11 @@ class CityResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static ?string $navigationLabel = 'Villes';
+    protected static ?string $modelLabel = 'Ville';
+    protected static ?string $pluralModelLabel = 'Villes';
+    protected static bool $hasTitleCaseModelLabel = false;
+
     public static function form(Schema $schema): Schema
     {
         return CityForm::configure($schema);
