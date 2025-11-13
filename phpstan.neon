@@ -13,3 +13,4 @@ parameters:
 
     excludePaths:
         - app/Http/Controllers/BaseController.php
+        - honey/
