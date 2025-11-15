@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Army\Establishment;
 use App\Models\Army\TreeUnit;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 
 class RegisterTreeUnits extends Command
 {
@@ -13,7 +14,7 @@ class RegisterTreeUnits extends Command
     public function handle(): int
     {
         $ministere_defense = Establishment::query()->where('name', 'Ministère de la défense')->first();
-        $tree = json_decode(config('army.tree_units.tree'), true);
+        $tree = json_decode(File::get(public_path('armee_igp.json')), true);
 
         TreeUnit::query()->forceDelete();
 

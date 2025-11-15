@@ -41,8 +41,8 @@ class ChildrenRelationManager extends RelationManager
             ->recordTitleAttribute('name')
             ->paginated(false)
             ->columns([
-                TextColumn::make('name'),
-                TextColumn::make('establishment.name'),
+                TextColumn::make('name')->label('Nom de l\'échelon'),
+                TextColumn::make('establishment.name')->label('Établissement'),
             ])
             ->headerActions([
                 CreateAction::make(),
