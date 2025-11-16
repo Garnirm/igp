@@ -5,6 +5,7 @@ namespace App\Filament\Admin\Resources\Army\TreeUnits\Schemas;
 use App\Models\Army\Materiel;
 use App\Models\Army\Role;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -26,6 +27,8 @@ class TreeUnitForm
                             ->preload()
                             ->optionsLimit(1000000)
                             ->relationship(name: 'establishment', titleAttribute: 'name'),
+ 
+                        TagsInput::make('tags')->label('Tags'),
                     ])
                     ->columns(2)
                     ->columnSpanFull(),

@@ -5,6 +5,7 @@ namespace App\Filament\Admin\Resources\Cities;
 use App\Filament\Admin\Resources\Cities\Pages\CreateCity;
 use App\Filament\Admin\Resources\Cities\Pages\EditCity;
 use App\Filament\Admin\Resources\Cities\Pages\ListCities;
+use App\Filament\Admin\Resources\Cities\RelationManagers\ArmyEstablishmentsRelationManager;
 use App\Filament\Admin\Resources\Cities\Schemas\CityForm;
 use App\Filament\Admin\Resources\Cities\Tables\CitiesTable;
 use App\Models\City;
@@ -37,7 +38,9 @@ class CityResource extends Resource
 
     public static function getRelations(): array
     {
-        return [];
+        return [
+            ArmyEstablishmentsRelationManager::class,
+        ];
     }
 
     public static function getPages(): array

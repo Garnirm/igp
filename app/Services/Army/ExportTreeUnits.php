@@ -67,6 +67,10 @@ class ExportTreeUnits
                 $unit_data['materiels'] = $materiels;
             }
 
+            if (!empty($unit->tags)) {
+                $unit_data['tags'] = $unit->tags;
+            }
+
             $unit_data = self::retrieveSubUnits($unit->children()->with('establishment')->get(), $unit_data, $establishment);
 
             $data[ $unit->name ] = $unit_data;
@@ -97,6 +101,10 @@ class ExportTreeUnits
 
             if (!empty($unit->materiels)) {
                 $unit_data['materiels'] = $unit->materiels;
+            }
+
+            if (!empty($unit->tags)) {
+                $unit_data['tags'] = $unit->tags;
             }
 
             $unit_data = self::retrieveSubUnits($unit->children()->with('establishment')->get(), $unit_data, $establishment_iteration);

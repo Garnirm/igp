@@ -10,7 +10,7 @@ class TreeUnit extends Model
 {
     public $timestamps = false;
 
-    protected $fillable = [ 'name', 'parent_id', 'establishment_id', 'effectifs', 'materiels' ];
+    protected $fillable = [ 'name', 'parent_id', 'establishment_id', 'effectifs', 'materiels', 'tags' ];
 
     protected $table = 'army_tree_unit';
 

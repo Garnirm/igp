@@ -98,10 +98,15 @@ class RegisterTreeUnits extends Command
             $unit->materiels = self::transformMateriels($units['materiels']);
         }
 
+        if (isset($units['tags'])) {
+            $unit->tags = $units['tags'];
+        }
+
         $unit->save();
 
         unset($units['effectifs']);
         unset($units['materiels']);
+        unset($units['tags']);
 
         foreach ($units as $name_unit => $sub_units) {
             $establishment_iteration = $establishment;
