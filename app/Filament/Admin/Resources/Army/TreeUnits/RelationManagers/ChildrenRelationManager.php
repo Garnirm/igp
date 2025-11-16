@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Admin\Resources\Army\ArmyUnitResource\RelationManagers;
+namespace App\Filament\Admin\Resources\Army\TreeUnits\RelationManagers;
 
 use App\Filament\Admin\Resources\Army\TreeUnits\TreeUnitResource;
 use App\Models\Army\TreeUnit;
@@ -49,7 +49,7 @@ class ChildrenRelationManager extends RelationManager
             ])
             ->recordActions([
                 ViewAction::make()->url(fn (TreeUnit $record): string => TreeUnitResource::getUrl('edit', [ 'record' => $record->id ])),
-                EditAction::make(), 
+                EditAction::make(),
                 DeleteAction::make(),
             ]);
     }

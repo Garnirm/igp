@@ -2,7 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Army\TreeUnits;
 
-use App\Filament\Admin\Resources\Army\ArmyUnitResource\RelationManagers\ChildrenRelationManager;
+use App\Filament\Admin\Resources\Army\TreeUnits\RelationManagers\ChildrenRelationManager;
 use App\Filament\Admin\Resources\Army\TreeUnits\Pages\CreateTreeUnit;
 use App\Filament\Admin\Resources\Army\TreeUnits\Pages\EditTreeUnit;
 use App\Filament\Admin\Resources\Army\TreeUnits\Pages\ListTreeUnits;

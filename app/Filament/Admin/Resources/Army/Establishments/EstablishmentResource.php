@@ -5,6 +5,7 @@ namespace App\Filament\Admin\Resources\Army\Establishments;
 use App\Filament\Admin\Resources\Army\Establishments\Pages\CreateEstablishment;
 use App\Filament\Admin\Resources\Army\Establishments\Pages\EditEstablishment;
 use App\Filament\Admin\Resources\Army\Establishments\Pages\ListEstablishments;
+use App\Filament\Admin\Resources\Army\Establishments\RelationManagers\TreeUnitsRelationManager;
 use App\Filament\Admin\Resources\Army\Establishments\Schemas\EstablishmentForm;
 use App\Filament\Admin\Resources\Army\Establishments\Tables\EstablishmentsTable;
 use App\Models\Army\Establishment;
@@ -39,7 +40,9 @@ class EstablishmentResource extends Resource
 
     public static function getRelations(): array
     {
-        return [];
+        return [
+            TreeUnitsRelationManager::class,
+        ];
     }
 
     public static function getPages(): array
