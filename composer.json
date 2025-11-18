@@ -5,7 +5,7 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "filament/filament": "^4.0",
+        "filament/filament": "^4.1",
         "guzzlehttp/guzzle": "^7.0.1",
         "icetalker/filament-table-repeater": "^2.0",
         "laravel/framework": "^12.0",
