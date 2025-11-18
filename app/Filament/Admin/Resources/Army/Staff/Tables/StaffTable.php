@@ -5,6 +5,7 @@ namespace App\Filament\Admin\Resources\Army\Staff\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class StaffTable
@@ -13,10 +14,10 @@ class StaffTable
     {
         return $table
             ->columns([
-                //
-            ])
-            ->filters([
-                //
+                TextColumn::make('firstname')->label('Prénom'),
+                TextColumn::make('lastname')->label('Nom'),
+                TextColumn::make('rank.name')->label('Grade'),
+                TextColumn::make('role.name')->label('Rôle'),
             ])
             ->recordActions([
                 EditAction::make(),

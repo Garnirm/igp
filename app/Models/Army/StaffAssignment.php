@@ -4,19 +4,18 @@ namespace App\Models\Army;
 
 use MongoDB\Laravel\Eloquent\Model;
 use MongoDB\Laravel\Relations\BelongsTo;
-use MongoDB\Laravel\Relations\HasMany;
 
-class Staff extends Model
+class StaffAssignment extends Model
 {
     public $timestamps = false;
 
-    protected $fillable = [ 'firstname', 'lastname', 'rank_id', 'role_id', 'tree_unit_id' ];
+    protected $fillable = [ 'staff_id', 'start_date', 'end_date', 'rank_id', 'role_id', 'tree_unit_id', 'active' ];
 
-    protected $table = 'army_staff';
+    protected $table = 'army_staff_assignment';
 
-    public function assignments(): HasMany
+    public function staff(): BelongsTo
     {
-        return $this->hasMany(StaffAssignment::class, 'staff_id');
+        return $this->belongsTo(Staff::class, 'staff_id');
     }
 
     public function rank(): BelongsTo
