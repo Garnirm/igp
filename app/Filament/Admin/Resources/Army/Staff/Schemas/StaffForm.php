@@ -2,6 +2,8 @@
 
 namespace App\Filament\Admin\Resources\Army\Staff\Schemas;
 
+use App\Models\Army\Staff;
+use App\Models\Army\TreeUnit;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
@@ -39,7 +41,25 @@ class StaffForm
                                 modifyQueryUsing: fn (Builder $query) => $query->orderBy('name', 'asc'),
                             ),
 
-                        TextInput::make('tree_unit_id')->label('ID de l\'échelon')->columns(1),
+                        Select::make('tree_unit_id')->label('Echelon')
+                            ->searchable()
+                            ->columnSpanFull()
+                            ->required()
+                            ->getOptionLabelUsing(function (string $value): ?string {
+                                $unit = TreeUnit::find($value);
+
+                                return $unit?->generateFullPath();
+                            })
+                            ->getSearchResultsUsing(function (string $search): array {
+                                return TreeUnit::query()
+                                    ->where('name', 'regex', "/{$search}/i") 
+                                    ->limit(500)
+                                    ->get()
+                                    ->mapWithKeys(function (TreeUnit $unit): array {
+                                        return [ $unit->getKey() => $unit->generateFullPath() ];
+                                    })
+                                    ->toArray();
+                            }),
                     ])
                     ->columns(2)
                     ->columnSpanFull(),

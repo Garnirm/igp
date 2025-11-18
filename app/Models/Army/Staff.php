@@ -22,4 +22,9 @@ class Staff extends Model
     {
         return $this->belongsTo(Role::class, 'role_id');
     }
+
+    public function tree_unit(): BelongsTo
+    {
+        return $this->belongsTo(TreeUnit::class, 'tree_unit_id');
+    }
 }
