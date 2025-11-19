@@ -6,6 +6,7 @@ use App\Filament\Admin\Resources\Army\TreeUnits\RelationManagers\ChildrenRelatio
 use App\Filament\Admin\Resources\Army\TreeUnits\Pages\CreateTreeUnit;
 use App\Filament\Admin\Resources\Army\TreeUnits\Pages\EditTreeUnit;
 use App\Filament\Admin\Resources\Army\TreeUnits\Pages\ListTreeUnits;
+use App\Filament\Admin\Resources\Army\TreeUnits\RelationManagers\StaffsRelationManager;
 use App\Filament\Admin\Resources\Army\TreeUnits\Schemas\TreeUnitForm;
 use App\Filament\Admin\Resources\Army\TreeUnits\Tables\TreeUnitsTable;
 use App\Models\Army\TreeUnit;
@@ -42,6 +43,7 @@ class TreeUnitResource extends Resource
     {
         return [
             ChildrenRelationManager::class,
+            StaffsRelationManager::class,
         ];
     }
 

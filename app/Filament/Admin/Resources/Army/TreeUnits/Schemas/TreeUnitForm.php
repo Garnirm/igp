@@ -4,6 +4,7 @@ namespace App\Filament\Admin\Resources\Army\TreeUnits\Schemas;
 
 use App\Models\Army\Materiel;
 use App\Models\Army\Role;
+use App\Models\Army\Staff;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
@@ -27,6 +28,23 @@ class TreeUnitForm
                             ->preload()
                             ->optionsLimit(1000000)
                             ->relationship(name: 'establishment', titleAttribute: 'name'),
+
+                        Select::make('chief_staff_id')->label('Chef d\'échelon')
+                            ->searchable()
+                            ->preload()
+                            ->optionsLimit(1000000)
+                            ->relationship(name: 'chief_staff', titleAttribute: 'lastname')
+                            ->options(
+                                Staff::query()
+                                    ->where('tree_unit_id', $schema->model->id)
+                                    ->select('id', 'firstname', 'lastname')
+                                    ->get()
+                                    ->mapWithKeys(function (Staff $staff): array {
+                                        return [
+                                            $staff->id => $staff->firstname.' '.$staff->lastname,
+                                        ];
+                                    }),
+                            ),
  
                         TagsInput::make('tags')->label('Tags'),
                     ])

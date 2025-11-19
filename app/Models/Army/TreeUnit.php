@@ -25,8 +25,18 @@ class TreeUnit extends Model
         return $this->belongsTo(Establishment::class, 'establishment_id');
     }
 
+    public function chief_staff(): BelongsTo
+    {
+        return $this->belongsTo(Staff::class, 'chief_staff_id');
+    }
+
     public function children(): HasMany
     {
         return $this->hasMany(TreeUnit::class, 'parent_id');
+    }
+
+    public function staffs(): HasMany
+    {
+        return $this->hasMany(Staff::class, 'tree_unit_id');
     }
 }
