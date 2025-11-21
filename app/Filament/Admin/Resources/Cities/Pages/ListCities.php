@@ -9,11 +9,12 @@ use Filament\Resources\Pages\ListRecords;
 class ListCities extends ListRecords
 {
     protected static string $resource = CityResource::class;
+    protected static ?string $breadcrumb = 'Liste';
 
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            CreateAction::make()->label('Ajouter une ville'),
         ];
     }
 }

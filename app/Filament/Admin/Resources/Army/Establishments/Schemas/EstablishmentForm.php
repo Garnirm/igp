@@ -12,14 +12,15 @@ class EstablishmentForm
     {
         return $schema
             ->components([
-                TextInput::make('name')->label('Nom de l\'établissement'),
+                TextInput::make('name')->label('Nom de l\'établissement')->required(),
 
                 Select::make('city_id')
                     ->label('Ville')
                     ->relationship(name: 'city', titleAttribute: 'name')
                     ->preload()
                     ->optionsLimit(1000000)
-                    ->searchable(),
+                    ->searchable()
+                    ->required(),
             ]);
     }
 }
