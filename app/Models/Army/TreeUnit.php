@@ -7,6 +7,10 @@ use MongoDB\Laravel\Eloquent\Model;
 use MongoDB\Laravel\Relations\BelongsTo;
 use MongoDB\Laravel\Relations\HasMany;
 
+/**
+ * @property string $name
+ * @property ?string $parent_id
+ */
 class TreeUnit extends Model
 {
     public $timestamps = false;

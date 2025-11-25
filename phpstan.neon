@@ -5,7 +5,6 @@ includes:
 parameters:
     paths:
         - app/
-        - honey/
 
     level: 6
 
@@ -13,4 +12,3 @@ parameters:
 
     excludePaths:
         - app/Http/Controllers/BaseController.php
-        - honey/

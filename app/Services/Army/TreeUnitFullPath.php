@@ -46,6 +46,7 @@ class TreeUnitFullPath
             return;
         }
 
+        /** @var ?TreeUnit $parent */
         $parent = TreeUnit::find($tree_unit->parent_id);
 
         if (is_null($parent)) {
