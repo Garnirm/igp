@@ -7,11 +7,17 @@ use MongoDB\Laravel\Eloquent\Model;
 use MongoDB\Laravel\Relations\BelongsTo;
 use MongoDB\Laravel\Relations\HasMany;
 
+/**
+ * @property string $id
+ * @property string $name
+ * @property string $federal_state_id
+ * @property string $postal_code
+ */
 class City extends Model
 {
     public $timestamps = false;
 
-    protected $fillable = [ 'name', 'federal_state_id' ];
+    protected $fillable = [ 'name', 'federal_state_id', 'postal_code' ];
 
     protected $table = 'city';
 

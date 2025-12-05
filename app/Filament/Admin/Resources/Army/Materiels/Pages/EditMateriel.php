@@ -6,10 +6,12 @@ use App\Filament\Admin\Resources\Army\Materiels\MaterielResource;
 use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
+use Filament\Support\Enums\Width;
 
 class EditMateriel extends EditRecord
 {
     protected static string $resource = MaterielResource::class;
+    protected Width | string | null $maxContentWidth = Width::Full;
 
     protected function getHeaderActions(): array
     {

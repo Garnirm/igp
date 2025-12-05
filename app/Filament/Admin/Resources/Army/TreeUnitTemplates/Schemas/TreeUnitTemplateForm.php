@@ -15,7 +15,7 @@ class TreeUnitTemplateForm
             ->components([
                 TextInput::make('name')->label('Nom du template')->required(),
 
-                Livewire::make(ArmyTreeUnitTemplateBuilder::class)->key('structure-tree')->hidden(fn ($record) => is_null($record))
+                Livewire::make(ArmyTreeUnitTemplateBuilder::class)->key('structure-tree')->hidden(fn ($record) => is_null($record))->columnSpanFull(),
             ]);
     }
 }

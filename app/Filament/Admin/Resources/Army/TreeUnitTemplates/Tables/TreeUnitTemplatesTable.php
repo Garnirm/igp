@@ -14,7 +14,7 @@ class TreeUnitTemplatesTable
     {
         return $table
             ->columns([
-                TextColumn::make('name')->label('Nom du template'),
+                TextColumn::make('name')->label('Nom du template')->searchable(),
             ])
             ->recordActions([
                 EditAction::make(),

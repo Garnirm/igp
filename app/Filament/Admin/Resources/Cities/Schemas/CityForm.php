@@ -13,6 +13,7 @@ class CityForm
         return $schema
             ->components([
                 TextInput::make('name')->label('Nom de la ville'),
+                TextInput::make('postal_code')->label('Code postal'),
 
                 Select::make('federal_state_id')->label('Etat')
                     ->relationship(name: 'federal_state', titleAttribute: 'name')

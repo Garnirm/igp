@@ -5,6 +5,7 @@ namespace App\Filament\Admin\Resources\Citizens;
 use App\Filament\Admin\Resources\Citizens\Pages\CreateCitizen;
 use App\Filament\Admin\Resources\Citizens\Pages\EditCitizen;
 use App\Filament\Admin\Resources\Citizens\Pages\ListCitizens;
+use App\Filament\Admin\Resources\Citizens\Pages\ViewCitizen;
 use App\Filament\Admin\Resources\Citizens\Schemas\CitizenForm;
 use App\Filament\Admin\Resources\Citizens\Tables\CitizensTable;
 use App\Models\Citizen;
@@ -45,6 +46,7 @@ class CitizenResource extends Resource
         return [
             'index' => ListCitizens::route('/'),
             'create' => CreateCitizen::route('/create'),
+            'view' => ViewCitizen::route('/{record}'),
             'edit' => EditCitizen::route('/{record}/edit'),
         ];
     }

@@ -1,9 +1,13 @@
-@props(['node'])
+@props([ 'node', 'name', 'path' ])
 
-<li class="ml-6 pl-4 border-l-2 border-gray-300 relative" x-data="{ open: true }">
+<?php
+    $items = collect($node)->filter(fn ($value, $key) => !in_array($key, [ 'effectifs', 'materiels', 'description' ]))->toArray();
+?>
+
+<li class="ml-6 pl-4 border-l-2 border-gray-200 relative" x-data="{ open: false }" wire:key="node-{{ $path }}">
     <div class="flex items-center gap-2 py-1 hover:bg-gray-50 rounded">
         <button @click="open = !open" type="button" class="text-gray-500 w-4 text-center">
-            @if (!empty($node['items']) || !empty($node['virtual_items']))
+            @if (!empty($items))
                 <span x-show="open">▼</span>
                 <span x-show="!open">▶</span>
             @else
@@ -11,30 +15,24 @@
             @endif
         </button>
 
-        <span class="font-medium text-sm {{ isset($node['template_id']) ? 'text-blue-600' : 'text-gray-800' }}">
-            {{ $node['name'] ?? 'Sans nom' }}
-        </span>
-
-        @if(isset($node['template_id']))
-            <span class="text-[10px] px-1.5 py-0.5 rounded border {{ ($node['fixed'] ?? false) ? 'bg-orange-100 text-orange-700 border-orange-200' : 'bg-blue-100 text-blue-700 border-blue-200' }}">
-                {{ ($node['fixed'] ?? false) ? 'Fixed' : 'Template Link' }}
-            </span>
-        @endif
+        <button 
+            type="button" 
+            wire:click="editNode('{{ str_replace('\'', '_', $path) }}')" 
+            class="font-medium text-sm hover:underline hover:text-primary-600 text-left"
+        >
+            {{ $name }}
+        </button>
     </div>
 
-    <ul x-show="open" class="mt-1" x-transition>
-        @if (!empty($node['items']))
-            @foreach ($node['items'] as $child)
-                @include('livewire.army-tree-unit-template.tree-node', ['node' => $child])
+    @if (!empty($items))
+        <ul x-show="open" class="mt-1" x-transition>
+            @foreach ($items as $node_name => $node_data)
+                @include('livewire.army-tree-unit-template.tree-node', [
+                    'node' => $node_data,
+                    'name' => $node_name,
+                    'path' => $path.'.'.$node_name,
+                ])
             @endforeach
-        @endif
-
-        @if (!empty($node['virtual_items']))
-            <div class="border-l-2 border-blue-100 ml-2 pl-2">
-                @foreach ($node['virtual_items'] as $child)
-                    @include('livewire.army-tree-unit-template.tree-node', ['node' => $child])
-                @endforeach
-            </div>
-        @endif
-    </ul>
+        </ul>
+    @endif
 </li>

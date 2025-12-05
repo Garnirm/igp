@@ -5,11 +5,13 @@ namespace App\Filament\Admin\Resources\Cities\Pages;
 use App\Filament\Admin\Resources\Cities\CityResource;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\CreateRecord;
+use Filament\Support\Enums\Width;
 use Illuminate\Contracts\Support\Htmlable;
 
 class CreateCity extends CreateRecord
 {
     protected static string $resource = CityResource::class;
+    protected Width | string | null $maxContentWidth = Width::Full;
     protected static ?string $breadcrumb = 'Création';
 
     public function getTitle(): string | Htmlable

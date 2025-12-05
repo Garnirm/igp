@@ -1,0 +1,16 @@
+{
+	"Bataillon des opérations": {
+		"Bureau Radar": {},
+		"Bureau de l'observation": {},
+		"Bureau de transmission des données": {},
+		"Bureau de guerre électronique": {}
+	},
+	"Bataillon de maintenance et de support technique": {
+		"Compagnie de maintenance des systèmes radar": {},
+		"Compagnie du support informatique et des réseaux": {}
+	},
+	"Bataillon de la sécurité et de la défense": {
+		"Salle de contrôle et de sécurité": {}
+	},
+    "Bataillon de soutien et d'administration": {}
+}

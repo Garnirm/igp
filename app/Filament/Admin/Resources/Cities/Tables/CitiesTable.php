@@ -16,8 +16,8 @@ class CitiesTable
             ->columns([
                 TextColumn::make('name')->label('Nom de la ville')->sortable()->searchable(),
                 TextColumn::make('federal_state.name')->label('État')->sortable()->searchable(),
+                TextColumn::make('postal_code')->label('Code postal')->sortable()->searchable(),
             ])
-            ->filters([])
             ->recordActions([
                 EditAction::make(),
             ])
