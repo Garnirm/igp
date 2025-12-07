@@ -2,9 +2,7 @@
 
 namespace App\Enums;
 
-use Filament\Support\Contracts\HasLabel;
-
-enum CitizenSexe: string implements HasLabel
+enum CitizenSexe: string
 {
     case H = 'H';
     case F = 'F';

@@ -21,11 +21,17 @@ class City extends Model
 
     protected $table = 'city';
 
+    /**
+     * @return HasMany<Establishment,$this>
+     */
     public function army_establishments(): HasMany
     {
         return $this->hasMany(Establishment::class, 'city_id');
     }
 
+    /**
+     * @return BelongsTo<FederalState,$this>
+     */
     public function federal_state(): BelongsTo
     {
         return $this->belongsTo(FederalState::class, 'federal_state_id');

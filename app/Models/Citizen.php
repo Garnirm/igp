@@ -12,7 +12,7 @@ use MongoDB\Laravel\Relations\BelongsTo;
  * @property string $lastname
  * @property string $firstname
  * @property null|string $birthdate
- * @property null|array $birth_location
+ * @property null|array<string,string> $birth_location
  * @property CitizenSexe $sexe
  * @property null|string $nationality_acquisition_location
  * @property null|string $nationality_acquiered_at
@@ -36,6 +36,9 @@ class Citizen extends Model
 
     protected $table = 'citizen';
 
+    /**
+     * @return BelongsTo<City,$this>
+     */
     public function city(): BelongsTo
     {
         return $this->belongsTo(City::class, 'city_id');

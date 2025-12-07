@@ -1,13 +1,17 @@
+/** @type {import('tailwindcss').Config} */
 export default {
     content: [
         './resources/**/*.blade.php',
         './resources/**/*.js',
         './resources/**/*.vue',
-        './resources/views/livewire/**/*.blade.php', 
-        './app/Livewire/**/*.php',
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                mono: ['JetBrains Mono', 'monospace'],
+            },
+        },
     },
     plugins: [],
 }

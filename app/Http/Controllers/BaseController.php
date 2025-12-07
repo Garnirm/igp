@@ -12,11 +12,11 @@ abstract class BaseController extends Controller
     protected string $dtos_path;
     protected string $requests_path;
 
-    public function __call(string $function): JsonResponse
+    public function __call($method, $parameters = [])
     {
-        $action_class = $this->actions_path.'\\'.ucfirst($function).'Action';
-        $request_class = $this->requests_path.'\\'.ucfirst($function).'Request';
-        $dto_class = $this->dtos_path.'\\'.ucfirst($function).'Dto';
+        $action_class = $this->actions_path.'\\'.ucfirst($method).'Action';
+        $request_class = $this->requests_path.'\\'.ucfirst($method).'Request';
+        $dto_class = $this->dtos_path.'\\'.ucfirst($method).'Dto';
 
         $validated_parameters = [];
 
