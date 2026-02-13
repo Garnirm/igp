@@ -200,6 +200,8 @@ class RegisterTreeUnitTemplates extends Command
             'Centre inter-armées d\'intelligence artificielle' => 'CCPM/NBIC/CentreInterArmeesIntelligenceArtificielle.json',
             'Laboratoire de la détonique et des ondes de choc' => 'CCPM/EtudesExplosifs/LaboratoireDetoniqueOndesChoc.json',
             'Laboratoire de la formulation des nouveaux explosifs' => 'CCPM/EtudesExplosifs/LaboratoireFormulationExplosifs.json',
+            'Agence anti-corruption' => 'FSD/PoliceNationale/AgenceAntiCorruption.json',
+            'Patrouille de démonstration aérienne' => 'ArmeeAir/PatrouilleDemonstrationAerienne.json',
         ];
 
         foreach ($templates as $template_name => $file_path) {

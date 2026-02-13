@@ -8,16 +8,23 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import ApexCharts from 'vue3-apexcharts'
 
 createInertiaApp({
-    title: (title) => `${title} - IGP Drarekstanie`,
-    
-    resolve: (name) => {
-        // C'est cette ligne qui permet ta structure flexible.
-        // Inertia va chercher récursivement (**) dans le dossier Pages.
-        // Tu pourras avoir : Pages/Public/Welcome.vue ou Pages/Armee/Dashboard.vue
-        return resolvePageComponent(
+    title: (title) => `${title} - Gifrane ERP`,
+
+    resolve: async (name) => {
+        let page = await resolvePageComponent(
             `./Pages/${name}.vue`,
-            import.meta.glob('./Pages/**/*.vue')
+            import.meta.glob('./Pages/**/*.vue'),
         )
+
+        if (typeof page.default.layout === 'undefined') {
+            if (name.startsWith('Guest/')) {
+                page.default.layout = GuestLayout
+            } else {
+                page.default.layout = AppLayout
+            }
+        }
+
+        return page
     },
 
     setup({ el, App, props, plugin }) {
