@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Enums\CitizenSexe;
-use MongoDB\Laravel\Eloquent\Model;
+use MongoDB\Laravel\Auth\User as Authenticatable;
 use MongoDB\Laravel\Relations\BelongsTo;
 
 /**
@@ -21,7 +21,7 @@ use MongoDB\Laravel\Relations\BelongsTo;
  * @property null|string $death_date
  * @property string $fullname_first
  */
-class Citizen extends Model
+class Citizen extends Authenticatable
 {
     public $timestamps = false;
 

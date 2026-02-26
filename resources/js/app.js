@@ -1,14 +1,13 @@
-import './bootstrap'
-import '../css/app.css'
-
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 
 import ApexCharts from 'vue3-apexcharts'
 
+import GuestLayout from './Layouts/GuestLayout.vue'
+
 createInertiaApp({
-    title: (title) => `${title} - Gifrane ERP`,
+    title: () => 'Portail numérique unifié',
 
     resolve: async (name) => {
         let page = await resolvePageComponent(
@@ -17,7 +16,7 @@ createInertiaApp({
         )
 
         if (typeof page.default.layout === 'undefined') {
-            if (name.startsWith('Guest/')) {
+            if (name.startsWith('Public/')) {
                 page.default.layout = GuestLayout
             } else {
                 page.default.layout = AppLayout
